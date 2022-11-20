@@ -1,21 +1,28 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addNewBody } from "../../../store/ducks/solarSystemDash";
+import { useDispatch } from "react-redux";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import { addNewBody } from "../../../store/ducks/solarSystemDash";
 
 const CreateNewBodyContainer = () => {
   const dispatch = useDispatch();
-
   const [showDropdown, setShowDropdown] = useState(false);
   const [bodyName, setBodyName] = useState("");
   const [bodyType, setBodyType] = useState(null);
-  //dispatch(getAllSolarSystemData());
 
   const handleAddNewBody = () => {
     if (bodyName.length > 0 && bodyType) {
-      dispatch(addNewBody());
+      let customBodies = JSON.parse(localStorage.getItem("customBodies"));
+      if (customBodies) {
+        customBodies.push({ englishName: bodyName, bodyType });
+        localStorage.setItem("customBodies", JSON.stringify(customBodies));
+      } else
+        localStorage.setItem(
+          "customBodies",
+          JSON.stringify([{ englishName: bodyName, bodyType }])
+        );
       setShowDropdown(false);
+      dispatch(addNewBody({ englishName: bodyName, bodyType }));
     }
   };
 
@@ -31,9 +38,9 @@ const CreateNewBodyContainer = () => {
             handleOnChange={setBodyName}
           />
           <div className="flex">
-            <div onClick={() => setBodyType("planet")}>Planet</div>
-            <div onClick={() => setBodyType("moon")}>Moon</div>
-            <div onClick={() => setBodyType("star")}>Star</div>
+            <div onClick={() => setBodyType("Planet")}>Planet</div>
+            <div onClick={() => setBodyType("Moon")}>Moon</div>
+            <div onClick={() => setBodyType("Star")}>Star</div>
           </div>
         </div>
       )}

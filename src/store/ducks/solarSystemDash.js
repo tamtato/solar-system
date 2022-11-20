@@ -9,6 +9,15 @@ const initialState = {
 
 const baseUrl = "https://api.le-systeme-solaire.net/rest/bodies";
 
+const concatCustomBodies = data => {
+  if (localStorage.getItem("customBodies")) {
+    data.bodies = data.bodies.concat(
+      JSON.parse(localStorage.getItem("customBodies"))
+    );
+  }
+  return data;
+};
+
 export const getAllSolarSystemData = () => {
   return dispatch => {
     const url = baseUrl + "?order=isPlanet,asc";
@@ -16,7 +25,7 @@ export const getAllSolarSystemData = () => {
       .then(response => response.json())
       .then(data => {
         dispatch(setAllSolarSystemData(data));
-        dispatch(setQueriedSolarSystemData(data));
+        dispatch(setQueriedSolarSystemData(concatCustomBodies(data)));
       });
   };
 };
@@ -29,7 +38,9 @@ export const filterSolarSystemData = filter => {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        dispatch(setQueriedSolarSystemData(data));
+        dispatch(
+          setQueriedSolarSystemData(filter ? data : concatCustomBodies(data))
+        );
       });
   };
 };
@@ -42,7 +53,9 @@ export const sortSolarSystemData = direction => {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        dispatch(setQueriedSolarSystemData(data));
+        dispatch(
+          setQueriedSolarSystemData(direction ? data : concatCustomBodies(data))
+        );
       });
   };
 };
@@ -61,10 +74,10 @@ const setQueriedSolarSystemData = data => {
   };
 };
 
-export const addNewBody = data => {
+export const addNewBody = newBody => {
   return {
     type: ADD_NEW_BODY,
-    data
+    newBody
   };
 };
 
@@ -81,9 +94,19 @@ const reducer = (state = initialState, action = {}) => {
         queriedSolarSystemData: action.data
       };
     case ADD_NEW_BODY:
+      let allSolarSystemDataCopy = JSON.parse(
+        JSON.stringify(state.allSolarSystemData)
+      );
+      allSolarSystemDataCopy.bodies.push(action.newBody);
+      let queriedSolarSystemDataCopy = JSON.parse(
+        JSON.stringify(state.queriedSolarSystemData)
+      );
+      queriedSolarSystemDataCopy.bodies.push(action.newBody);
+
       return {
         ...state,
-        queriedSolarSystemData: action.data
+        allSolarSystemData: allSolarSystemDataCopy,
+        queriedSolarSystemData: queriedSolarSystemDataCopy
       };
     default:
       return state;

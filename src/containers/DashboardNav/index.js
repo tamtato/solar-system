@@ -37,13 +37,13 @@ const DashboardNav = () => {
 
   const handleSearchData = value => {
     if (queriedSolarSystemData && queriedSolarSystemData.bodies) {
-      const filteredData = [...queriedSolarSystemData.bodies].filter(item => {
+      const queriedData = [...queriedSolarSystemData.bodies].filter(item => {
         if (item.englishName.toLowerCase().includes(value.toLowerCase())) {
           return item;
         }
       });
       setSearchValue(value);
-      setNavData(filteredData);
+      setNavData(queriedData);
     }
   };
 
