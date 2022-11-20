@@ -4,7 +4,6 @@ import NavItem from "../../../components/NavItem";
 const NavItemsContainer = ({ data }) => {
   const buildSubText = item => {
     let subText = "";
-
     if (item.moons || item.bodyType === "Planet") {
       subText = item.moons
         ? item.moons.length + " " + (item.moons.length > 1 ? "Moons" : "Moon")
@@ -13,7 +12,7 @@ const NavItemsContainer = ({ data }) => {
       const foundPlanet = data.find(
         planet => planet.id === item.aroundPlanet.planet
       );
-      subText = foundPlanet.englishName;
+      subText = foundPlanet ? foundPlanet.englishName : "";
     } else {
       subText = item.bodyType;
     }
