@@ -4,15 +4,33 @@ const initialState = {
   solarSystemData: []
 };
 
+const baseUrl = "https://api.le-systeme-solaire.net/rest/bodies";
+
 export const getSolarSystemData = filter => {
   return dispatch => {
-    return dispatch(setSolarSystemData("data"));
+    const url =
+      baseUrl +
+      (filter ? "?filter[]=bodyType," + filter : "?order=isPlanet,asc");
+
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        dispatch(setSolarSystemData(data));
+      });
   };
 };
 
-export const sortSolarSystemData = sort => {
+export const sortSolarSystemData = direction => {
   return dispatch => {
-    return dispatch(setSolarSystemData("data"));
+    const url =
+      baseUrl + (direction ? "?order=name" + direction : "?order=isPlanet,asc");
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        dispatch(setSolarSystemData(data));
+      });
   };
 };
 
