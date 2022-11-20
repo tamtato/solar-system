@@ -15,7 +15,6 @@ export const getSolarSystemData = filter => {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         dispatch(setSolarSystemData(data));
       });
   };
@@ -28,7 +27,6 @@ export const sortSolarSystemData = direction => {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         dispatch(setSolarSystemData(data));
       });
   };
@@ -45,7 +43,8 @@ const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_SOLAR_SYSTEM_DATA:
       return {
-        ...state
+        ...state,
+        solarSystemData: action.data
       };
     default:
       return state;
