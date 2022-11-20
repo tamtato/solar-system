@@ -1,15 +1,8 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getSolarSystemData } from "./store/ducks/solarSystemDash";
+import React from "react";
+import Dashboard from "./views/Dashboard";
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSolarSystemData(null));
-  }, [dispatch]);
-
-  return <div></div>;
+  return <Dashboard />;
 };
 
 export default App;
