@@ -1,21 +1,34 @@
-const SET_SOLAR_SYSTEM_DATA = "SET_SOLAR_SYSTEM_DATA";
+const SET_ALL_SOLAR_SYSTEM_DATA = "SET_ALL_SOLAR_SYSTEM_DATA";
+const SET_QUERIED_SOLAR_SYSTEM_DATA = "SET_QUERIED_SOLAR_SYSTEM_DATA";
 
 const initialState = {
-  solarSystemData: []
+  allSolarSystemData: [],
+  queriedSolarSystemData: []
 };
 
 const baseUrl = "https://api.le-systeme-solaire.net/rest/bodies";
 
-export const getSolarSystemData = filter => {
+export const getAllSolarSystemData = () => {
   return dispatch => {
-    const url =
-      baseUrl +
-      (filter ? "?filter[]=bodyType," + filter : "?order=isPlanet,asc");
-
+    const url = baseUrl + "?order=isPlanet,asc";
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        dispatch(setSolarSystemData(data));
+        dispatch(setAllSolarSystemData(data));
+        dispatch(setQueriedSolarSystemData(data));
+      });
+  };
+};
+
+export const filterSolarSystemData = filter => {
+  return dispatch => {
+    const url =
+      baseUrl +
+      (filter ? "?filter[]=bodyType,eq," + filter : "?order=isPlanet,asc");
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        dispatch(setQueriedSolarSystemData(data));
       });
   };
 };
@@ -28,26 +41,36 @@ export const sortSolarSystemData = direction => {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-
-        dispatch(setSolarSystemData(data));
+        dispatch(setQueriedSolarSystemData(data));
       });
   };
 };
 
-const setSolarSystemData = data => {
+const setAllSolarSystemData = data => {
   return {
-    type: SET_SOLAR_SYSTEM_DATA,
+    type: SET_ALL_SOLAR_SYSTEM_DATA,
+    data
+  };
+};
+
+const setQueriedSolarSystemData = data => {
+  return {
+    type: SET_QUERIED_SOLAR_SYSTEM_DATA,
     data
   };
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_SOLAR_SYSTEM_DATA:
+    case SET_ALL_SOLAR_SYSTEM_DATA:
       return {
         ...state,
-        solarSystemData: action.data
+        allSolarSystemData: action.data
+      };
+    case SET_QUERIED_SOLAR_SYSTEM_DATA:
+      return {
+        ...state,
+        queriedSolarSystemData: action.data
       };
     default:
       return state;

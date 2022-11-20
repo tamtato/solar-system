@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getSolarSystemData,
-  sortSolarSystemData
+  filterSolarSystemData,
+  sortSolarSystemData,
+  getAllSolarSystemData
 } from "../../store/ducks/solarSystemDash";
 import ActionsContainer from "./ActionsContainer";
 import NavItemsContainer from "./NavItemsContainer";
@@ -13,12 +14,16 @@ const DashboardNav = () => {
   const [navData, setNavData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [sortDirection, setSortDirection] = useState(null);
-  const solarSystemData = useSelector(
-    state => state.solarSystemDash.solarSystemData
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const allSolarSystemData = useSelector(
+    state => state.solarSystemDash.allSolarSystemData
+  );
+  const queriedSolarSystemData = useSelector(
+    state => state.solarSystemDash.queriedSolarSystemData
   );
 
   useEffect(() => {
-    dispatch(getSolarSystemData(null));
+    dispatch(getAllSolarSystemData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -26,11 +31,11 @@ const DashboardNav = () => {
     //if a filter is added and a search value is present
     //the list should consider this
     handleSearchData(searchValue);
-  }, [solarSystemData]);
+  }, [queriedSolarSystemData]);
 
   const handleSearchData = value => {
-    if (solarSystemData && solarSystemData.bodies) {
-      const filteredData = [...solarSystemData.bodies].filter(item => {
+    if (queriedSolarSystemData && queriedSolarSystemData.bodies) {
+      const filteredData = [...queriedSolarSystemData.bodies].filter(item => {
         if (item.englishName.toLowerCase().includes(value.toLowerCase())) {
           return item;
         }
@@ -48,20 +53,28 @@ const DashboardNav = () => {
     if (sortDirection === "asc") sortData("desc");
     else if (sortDirection === "desc") sortData(null);
     else sortData("asc");
+    setSelectedFilter(null);
   };
 
   const handleFilterData = filter => {
-    dispatch(getSolarSystemData(null));
+    setSortDirection(null);
+    setSelectedFilter(filter);
+    dispatch(filterSolarSystemData(filter));
   };
 
   return (
     <div className="flex flex-col w-80 flex-1">
       <ActionsContainer
+        sortDirection={sortDirection}
+        selectedFilter={selectedFilter}
         handleSearchData={handleSearchData}
         handleSortData={handleSortData}
         handleFilterData={handleFilterData}
       />
-      <NavItemsContainer data={navData} />
+      <NavItemsContainer
+        navData={navData}
+        allData={allSolarSystemData.bodies}
+      />
       <Button name="Add New Body" onClick={() => console.log("click")} />
     </div>
   );

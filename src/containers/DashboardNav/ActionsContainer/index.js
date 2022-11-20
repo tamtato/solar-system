@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchInput from "../../../components/SearchInput";
 import SmallButton from "../../../components/SmallButton";
+import SmallButtonDropdown from "../../../components/SmallButtonDropdown";
 
 const ActionsContainer = ({
   handleSearchData,
+  sortDirection,
   handleSortData,
-  handleFilterData
+  handleFilterData,
+  selectedFilter
 }) => {
   return (
-    <div>
+    <div className="flex">
       <SearchInput
         name="search"
         handleOnChange={handleSearchData}
         placeholder="Search Bodies"
       />
-      <SmallButton icon="swap_vert" handleOnClick={handleSortData} />
-      <SmallButton icon="filter_list" handleOnClick={handleFilterData} />
+      <SmallButton
+        icon="swap_vert"
+        handleOnClick={handleSortData}
+        active={sortDirection}
+      />
+      <SmallButtonDropdown
+        icon="filter_list"
+        handleOnClick={handleFilterData}
+        options={["planet", "moon", "star"]}
+        selectedOption={selectedFilter}
+      />
     </div>
   );
 };

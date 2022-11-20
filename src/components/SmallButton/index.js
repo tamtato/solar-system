@@ -1,9 +1,13 @@
 import React from "react";
 
-const SmallButton = ({ icon, handleOnClick }) => {
+const SmallButton = ({ icon, handleOnClick, active }) => {
   return (
     <button onClick={() => handleOnClick()}>
-      <span className="material-symbols-rounded">{icon}</span>
+      <span
+        className={`material-symbols-rounded ${active && "text-yellow-500"}`}
+      >
+        {icon}
+      </span>
     </button>
   );
 };
