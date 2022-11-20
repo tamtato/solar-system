@@ -1,13 +1,9 @@
 import { combineReducers } from "redux";
-
-import {
-  constants as exampleStoreConstants,
-  reducer as exampleStoreReducer,
-} from "./storeExample";
+import solarSystemDash from "./ducks/solarSystemDash";
 
 const createRootReducer = () =>
   combineReducers({
-    [exampleStoreConstants.STORE_NAME]: exampleStoreReducer,
+    solarSystemDash
   });
 
 export default createRootReducer;
