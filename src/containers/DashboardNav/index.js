@@ -7,7 +7,7 @@ import {
 } from "../../store/ducks/solarSystemDash";
 import ActionsContainer from "./ActionsContainer";
 import NavItemsContainer from "./NavItemsContainer";
-import Button from "../../components/Button";
+import CreateNewBodyContainer from "./CreateNewBodyContainer";
 
 const DashboardNav = () => {
   const dispatch = useDispatch();
@@ -15,9 +15,11 @@ const DashboardNav = () => {
   const [searchValue, setSearchValue] = useState("");
   const [sortDirection, setSortDirection] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState(null);
+
   const allSolarSystemData = useSelector(
     state => state.solarSystemDash.allSolarSystemData
   );
+
   const queriedSolarSystemData = useSelector(
     state => state.solarSystemDash.queriedSolarSystemData
   );
@@ -75,7 +77,7 @@ const DashboardNav = () => {
         navData={navData}
         allData={allSolarSystemData.bodies}
       />
-      <Button name="Add New Body" onClick={() => console.log("click")} />
+      <CreateNewBodyContainer />
     </div>
   );
 };

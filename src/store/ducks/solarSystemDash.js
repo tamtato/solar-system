@@ -1,5 +1,6 @@
 const SET_ALL_SOLAR_SYSTEM_DATA = "SET_ALL_SOLAR_SYSTEM_DATA";
 const SET_QUERIED_SOLAR_SYSTEM_DATA = "SET_QUERIED_SOLAR_SYSTEM_DATA";
+const ADD_NEW_BODY = "ADD_NEW_BODY";
 
 const initialState = {
   allSolarSystemData: [],
@@ -60,6 +61,13 @@ const setQueriedSolarSystemData = data => {
   };
 };
 
+export const addNewBody = data => {
+  return {
+    type: ADD_NEW_BODY,
+    data
+  };
+};
+
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_ALL_SOLAR_SYSTEM_DATA:
@@ -68,6 +76,11 @@ const reducer = (state = initialState, action = {}) => {
         allSolarSystemData: action.data
       };
     case SET_QUERIED_SOLAR_SYSTEM_DATA:
+      return {
+        ...state,
+        queriedSolarSystemData: action.data
+      };
+    case ADD_NEW_BODY:
       return {
         ...state,
         queriedSolarSystemData: action.data
