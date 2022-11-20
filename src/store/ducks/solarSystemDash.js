@@ -23,10 +23,13 @@ export const getSolarSystemData = filter => {
 export const sortSolarSystemData = direction => {
   return dispatch => {
     const url =
-      baseUrl + (direction ? "?order=name" + direction : "?order=isPlanet,asc");
+      baseUrl +
+      (direction ? "?order=englishName," + direction : "?order=isPlanet,asc");
     return fetch(url)
       .then(response => response.json())
       .then(data => {
+        console.log(data);
+
         dispatch(setSolarSystemData(data));
       });
   };
