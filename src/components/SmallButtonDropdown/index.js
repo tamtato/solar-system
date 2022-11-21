@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useOutsideClickClose } from "../../hooks/useOutsideClickClose";
 
 const SmallButtonDropdown = ({
@@ -29,7 +29,7 @@ const SmallButtonDropdown = ({
         </span>
       </button>
       {showDropdown && (
-        <div className="absolute z-10 cursor-pointer bg-zinc-700 w-40 pt-4 pb-1 mt-10 ml-32 ">
+        <div className="absolute z-10 cursor-pointer bg-zinc-700 w-40 pt-4 pb-1 mt-10 -ml-32 ">
           <h4 className="font-medium border-b border-zinc-500 block pb-4 px-4">
             {title}
           </h4>
