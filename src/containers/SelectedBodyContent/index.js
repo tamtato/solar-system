@@ -34,7 +34,7 @@ const SelectedBodyContent = () => {
   }
 
   return (
-    <div className="w-3/4 flex flex-col justify-center px-20 pt-20">
+    <div className="lg:w-3/4 flex flex-col justify-center lg:px-20 pt-20">
       {allSolarSystemData.bodies && (
         <>
           <BodyInfo title={selectedBody} infoCards={infoCards} />

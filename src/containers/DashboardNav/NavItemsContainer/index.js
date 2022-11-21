@@ -29,7 +29,7 @@ const NavItemsContainer = ({ navData, allData }) => {
   };
 
   return (
-    <div className="flex-1 relative">
+    <div className="lg:flex-1 h-80 relative">
       <div className="w-full h-full absolute left-0 top-0 overflow-y-auto space-y-4">
         {navData &&
           navData.map(item => {

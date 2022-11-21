@@ -20,7 +20,7 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
   return (
     <>
       {foundBody.bodyType === "Planet" ? (
-        <div>
+        <>
           <Title title="Moons" />
           <div className="flex flex-wrap content-start mt-6 h-32 overflow-y-auto">
             {foundBody.moons ? (
@@ -41,7 +41,7 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
               <p className="opacity-50">This planet doesn't have any moons.</p>
             )}
           </div>
-        </div>
+        </>
       ) : (
         <>
           <Title title="Orbiting" />
