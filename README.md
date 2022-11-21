@@ -1,5 +1,23 @@
 # Pigello frontend test
 
+## My comments
+
+When initially cloning and running npm install, I received an error for react-redux and that it had some dependency errors, this seems to be an error for npm versions 7.x
+
+## Responsive Design
+
+With more time I would have implemented better responsive design - Where it lacks is with screens 820(iPads) the layout is the same as a mobile so the content is a little stretched.
+
+## Sorting Data
+
+The data is sorted by body name ascending/descending and by default planets first. In a real project, I of course would discuss what sorting is needed and would implement a design that would work with that decision.
+
+## Filtering and Created Body
+
+With more time I would have liked to have added the created bodies to the filtered results.
+
+#
+
 ## The project
 
 The task is to build an interface that presents our solar system.
@@ -10,10 +28,10 @@ It is fine to use another API that can be used to represent our solar system.
 
 ## Technical description
 
-- The user should be able to see a list of bodies in our solar system
-- The user should be given enough data in the list to get a basic understanding of what planets and orbiting bodies are related to one another
-- The user should be able to add their own body to the solar system (bonus for keeping the new body when reloading the page using frontend caching solutions)
-- The list should be sortable and filterable through query params
+- The user should be able to see a list of bodies in our solar system - Done
+- The user should be given enough data in the list to get a basic understanding of what planets and orbiting bodies are related to one another - Done
+- The user should be able to add their own body to the solar system (bonus for keeping the new body when reloading the page using frontend caching solutions) - Done
+- The list should be sortable and filterable through query params - Done
 
 ## Practical description
 
