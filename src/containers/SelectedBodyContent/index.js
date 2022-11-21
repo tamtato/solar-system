@@ -17,6 +17,11 @@ const SelectedBodyContent = () => {
   return (
     <div className="w-3/4 flex flex-col justify-center px-20">
       <Title title={selectedBody} />
+      {foundBody.isPlanet ? (
+        <Title title="Moons" />
+      ) : (
+        foundBody.bodyType !== "Star" && <Title title="Orbiting" />
+      )}
     </div>
   );
 };
