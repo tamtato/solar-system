@@ -1,10 +1,12 @@
 const SET_ALL_SOLAR_SYSTEM_DATA = "SET_ALL_SOLAR_SYSTEM_DATA";
 const SET_QUERIED_SOLAR_SYSTEM_DATA = "SET_QUERIED_SOLAR_SYSTEM_DATA";
 const ADD_NEW_BODY = "ADD_NEW_BODY";
+const SET_SELECTED_BODY = "SET_SELECTED_BODY";
 
 const initialState = {
   allSolarSystemData: [],
-  queriedSolarSystemData: []
+  queriedSolarSystemData: [],
+  selectedBody: ""
 };
 
 const baseUrl = "https://api.le-systeme-solaire.net/rest/bodies";
@@ -81,6 +83,13 @@ export const addNewBody = newBody => {
   };
 };
 
+export const setSelectedBody = body => {
+  return {
+    type: SET_SELECTED_BODY,
+    body
+  };
+};
+
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_ALL_SOLAR_SYSTEM_DATA:
@@ -107,6 +116,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         allSolarSystemData: allSolarSystemDataCopy,
         queriedSolarSystemData: queriedSolarSystemDataCopy
+      };
+    case SET_SELECTED_BODY:
+      return {
+        ...state,
+        selectedBody: action.body
       };
     default:
       return state;

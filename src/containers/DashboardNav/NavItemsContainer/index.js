@@ -1,7 +1,12 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import NavItem from "../../../components/NavItem";
+import { setSelectedBody } from "../../../store/ducks/solarSystemDash";
 
 const NavItemsContainer = ({ navData, allData }) => {
+  const dispatch = useDispatch();
+  const selectedBody = useSelector(state => state.solarSystemDash.selectedBody);
+
   const buildSubText = item => {
     let subText = "";
     if (item.moons || item.bodyType === "Planet") {
@@ -18,9 +23,14 @@ const NavItemsContainer = ({ navData, allData }) => {
     }
     return subText;
   };
+
+  const handleOnClick = name => {
+    dispatch(setSelectedBody(name));
+  };
+
   return (
     <div className="flex-1 relative">
-      <div className="w-full h-full absolute left-0 top-0 overflow-y-auto">
+      <div className="w-full h-full absolute left-0 top-0 overflow-y-auto space-y-4">
         {navData &&
           navData.map(item => {
             return (
@@ -28,6 +38,8 @@ const NavItemsContainer = ({ navData, allData }) => {
                 key={item.englishName}
                 name={item.englishName}
                 subText={buildSubText(item)}
+                handleOnClick={handleOnClick}
+                active={selectedBody === item.englishName}
               />
             );
           })}

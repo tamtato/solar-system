@@ -2,10 +2,7 @@ import React from "react";
 
 const Button = ({ name, handleOnClick }) => {
   return (
-    <button
-      className="font-text text-white font-medium"
-      onClick={() => handleOnClick()}
-    >
+    <button className="font-medium" onClick={() => handleOnClick()}>
       {name}
     </button>
   );
