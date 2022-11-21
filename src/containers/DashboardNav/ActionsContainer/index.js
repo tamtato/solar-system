@@ -46,6 +46,7 @@ const ActionsContainer = ({ handleSearchData }) => {
           active={sortDirection}
         />
         <SmallButtonDropdown
+          title="Filter by"
           icon="filter_list"
           handleOnClick={handleFilterData}
           options={["planet", "moon", "star"]}

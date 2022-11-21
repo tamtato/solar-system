@@ -2,12 +2,15 @@ import React from "react";
 
 const SmallButton = ({ icon, handleOnClick, active }) => {
   return (
-    <button onClick={() => handleOnClick()}>
-      <span
+    <button
+      className="flex justify-center content-center p-3"
+      onClick={() => handleOnClick()}
+    >
+      <div
         className={`material-symbols-rounded ${active && "text-yellow-500"}`}
       >
         {icon}
-      </span>
+      </div>
     </button>
   );
 };

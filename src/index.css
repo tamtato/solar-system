@@ -16,3 +16,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+input {
+  font-family: "Poppins", sans-serif;
+  border-radius: 4px;
+  background: #27272a;
+  border: "1px solid";
+  padding: 12px;
+}
+
+input:focus {
+  color: #eab308;
+  outline: none;
+}
