@@ -1,6 +1,7 @@
 import React from "react";
-import Title from "../../components/Title";
 import { useSelector } from "react-redux";
+import BodyInfo from "./BodyInfo";
+import BodyRelations from "./BodyRelations";
 
 const SelectedBodyContent = () => {
   const allSolarSystemData = useSelector(
@@ -8,19 +9,41 @@ const SelectedBodyContent = () => {
   );
   const selectedBody = useSelector(state => state.solarSystemDash.selectedBody);
 
-  const foundBody = allSolarSystemData.bodies.find(
-    body => body.englishName === selectedBody
-  );
+  let infoCards = [];
+  let foundBody = {};
 
-  console.log(foundBody);
+  if (allSolarSystemData.bodies) {
+    foundBody =
+      allSolarSystemData.bodies &&
+      allSolarSystemData.bodies.find(body => body.englishName === selectedBody);
+
+    infoCards = [
+      {
+        title: "Type",
+        value: foundBody.bodyType,
+        measurement: ""
+      },
+      {
+        title: "Gravity",
+        value: foundBody.gravity + "m.s-2"
+      },
+      {
+        title: "Avg. Temp",
+        value: foundBody.avgTemp + "K"
+      }
+    ];
+  }
 
   return (
-    <div className="w-3/4 flex flex-col justify-center px-20">
-      <Title title={selectedBody} />
-      {foundBody.isPlanet ? (
-        <Title title="Moons" />
-      ) : (
-        foundBody.bodyType !== "Star" && <Title title="Orbiting" />
+    <div className="w-3/4 flex flex-col justify-center px-20 pt-20">
+      {allSolarSystemData.bodies && (
+        <>
+          <BodyInfo title={selectedBody} infoCards={infoCards} />
+          <BodyRelations
+            foundBody={foundBody}
+            allSolarSystemData={allSolarSystemData}
+          />
+        </>
       )}
     </div>
   );
