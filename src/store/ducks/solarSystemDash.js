@@ -94,6 +94,7 @@ const reducer = (state = initialState, action = {}) => {
         queriedSolarSystemData: action.data
       };
     case ADD_NEW_BODY:
+      //Need to make a deep copy - otherwise changes to objects are not being recoginsed
       let allSolarSystemDataCopy = JSON.parse(
         JSON.stringify(state.allSolarSystemData)
       );
@@ -102,7 +103,6 @@ const reducer = (state = initialState, action = {}) => {
         JSON.stringify(state.queriedSolarSystemData)
       );
       queriedSolarSystemDataCopy.bodies.push(action.newBody);
-
       return {
         ...state,
         allSolarSystemData: allSolarSystemDataCopy,

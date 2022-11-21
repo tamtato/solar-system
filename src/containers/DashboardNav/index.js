@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  filterSolarSystemData,
-  sortSolarSystemData,
-  getAllSolarSystemData
-} from "../../store/ducks/solarSystemDash";
+import { getAllSolarSystemData } from "../../store/ducks/solarSystemDash";
 import ActionsContainer from "./ActionsContainer";
 import NavItemsContainer from "./NavItemsContainer";
 import CreateNewBodyContainer from "./CreateNewBodyContainer";
@@ -13,8 +9,6 @@ const DashboardNav = () => {
   const dispatch = useDispatch();
   const [navData, setNavData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [sortDirection, setSortDirection] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState(null);
 
   const allSolarSystemData = useSelector(
     state => state.solarSystemDash.allSolarSystemData
@@ -47,32 +41,9 @@ const DashboardNav = () => {
     }
   };
 
-  const handleSortData = () => {
-    const sortData = value => {
-      dispatch(sortSolarSystemData(value));
-      setSortDirection(value);
-    };
-    if (sortDirection === "asc") sortData("desc");
-    else if (sortDirection === "desc") sortData(null);
-    else sortData("asc");
-    setSelectedFilter(null);
-  };
-
-  const handleFilterData = filter => {
-    setSortDirection(null);
-    setSelectedFilter(filter);
-    dispatch(filterSolarSystemData(filter));
-  };
-
   return (
     <div className="flex flex-col w-80 flex-1">
-      <ActionsContainer
-        sortDirection={sortDirection}
-        selectedFilter={selectedFilter}
-        handleSearchData={handleSearchData}
-        handleSortData={handleSortData}
-        handleFilterData={handleFilterData}
-      />
+      <ActionsContainer handleSearchData={handleSearchData} />
       <NavItemsContainer
         navData={navData}
         allData={allSolarSystemData.bodies}
