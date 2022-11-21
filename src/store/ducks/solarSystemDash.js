@@ -6,7 +6,7 @@ const SET_SELECTED_BODY = "SET_SELECTED_BODY";
 const initialState = {
   allSolarSystemData: [],
   queriedSolarSystemData: [],
-  selectedBody: ""
+  selectedBody: "Earth"
 };
 
 const baseUrl = "https://api.le-systeme-solaire.net/rest/bodies";
