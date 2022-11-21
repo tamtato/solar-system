@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../../components/Button";
 import { addNewBody } from "../../../store/ducks/solarSystemDash";
@@ -11,6 +11,12 @@ const CreateNewBodyContainer = () => {
   const [bodyName, setBodyName] = useState("");
   const [bodyType, setBodyType] = useState(null);
 
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setBodyName("");
+    setBodyType(null);
+  };
+
   const handleAddNewBody = () => {
     if (bodyName.length > 0 && bodyType) {
       let customBodies = JSON.parse(localStorage.getItem("customBodies"));
@@ -22,7 +28,7 @@ const CreateNewBodyContainer = () => {
           "customBodies",
           JSON.stringify([{ englishName: bodyName, bodyType }])
         );
-      setShowForm(false);
+      handleCloseForm();
       dispatch(addNewBody({ englishName: bodyName, bodyType }));
     }
   };
@@ -39,14 +45,11 @@ const CreateNewBodyContainer = () => {
       )}
       {showForm ? (
         <div className="flex-1 flex">
-          <CancelButton handleOnClick={() => setShowForm(!showForm)} />
+          <CancelButton handleOnClick={() => handleCloseForm()} />
           <Button name="Create" handleOnClick={() => handleAddNewBody()} />
         </div>
       ) : (
-        <Button
-          name="Add New Body"
-          handleOnClick={() => setShowForm(!showForm)}
-        />
+        <Button name="Add New Body" handleOnClick={() => setShowForm(true)} />
       )}
     </div>
   );

@@ -1,20 +1,31 @@
 import React from "react";
 import Input from "../../../components/Input";
+import Pill from "../../../components/Pill";
+import Label from "../../../components/Label";
 
 const NewBodyForm = ({ setBodyName, setBodyType, bodyName, bodyType }) => {
+  const bodyTypeList = ["Planet", "Moon", "Star"];
   return (
-    <div className="absolute top-0 left-0 -mt-20 z-10 bg-white">
-      <div>Create New Body</div>
+    <div className="absolute w-full flex flex-col bottom-0 left-0 mb-16 z-10 bg-zinc-700 px-6 py-8 space-y-4">
+      <h4 className="font-medium text-center pb-3">Create New Body</h4>
+      <Label label="Body Name" />
       <Input
         name="name"
         placeholder="Body Name"
+        label="Body Name"
         value={bodyName}
         handleOnChange={setBodyName}
       />
+      <div className="pb-1" />
+      <Label label="Body Type" />
       <div className="flex">
-        <div onClick={() => setBodyType("Planet")}>Planet</div>
-        <div onClick={() => setBodyType("Moon")}>Moon</div>
-        <div onClick={() => setBodyType("Star")}>Star</div>
+        {bodyTypeList.map(body => (
+          <Pill
+            active={bodyType === body}
+            name={body}
+            handleOnClick={() => setBodyType(body)}
+          />
+        ))}
       </div>
     </div>
   );
