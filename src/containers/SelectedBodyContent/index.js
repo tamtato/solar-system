@@ -20,16 +20,15 @@ const SelectedBodyContent = () => {
     infoCards = [
       {
         title: "Type",
-        value: foundBody.bodyType,
-        measurement: ""
+        value: foundBody.bodyType
       },
       {
         title: "Gravity",
-        value: foundBody.gravity + "m.s-2"
+        value: (foundBody.gravity ? foundBody.gravity : 0) + "m.s-2"
       },
       {
         title: "Avg. Temp",
-        value: foundBody.avgTemp + "K"
+        value: (foundBody.avgTemp ? foundBody.avgTemp : 0) + "K"
       }
     ];
   }

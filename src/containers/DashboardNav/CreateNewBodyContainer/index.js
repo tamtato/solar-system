@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../../components/Button";
 import { addNewBody } from "../../../store/ducks/solarSystemDash";
 import NewBodyForm from "./NewBodyForm";
 import CancelButton from "../../../components/CancelButton";
+import { useOutsideClickClose } from "../../../hooks/useOutsideClickClose";
 
 const CreateNewBodyContainer = () => {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [bodyName, setBodyName] = useState("");
   const [bodyType, setBodyType] = useState(null);
+  const dropdownRef = useRef("formDropdown");
+  useOutsideClickClose(dropdownRef, () => {
+    setShowForm(false);
+  });
 
   const handleCloseForm = () => {
     setShowForm(false);
@@ -34,7 +39,7 @@ const CreateNewBodyContainer = () => {
   };
 
   return (
-    <div className="relative flex w-full">
+    <div ref={dropdownRef} className="relative flex w-full">
       {showForm && (
         <NewBodyForm
           bodyName={bodyName}

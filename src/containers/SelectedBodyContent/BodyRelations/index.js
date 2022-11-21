@@ -19,7 +19,7 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
 
   return (
     <>
-      {foundBody.isPlanet ? (
+      {foundBody.bodyType === "Planet" ? (
         <div>
           <Title title="Moons" />
           <div className="flex flex-wrap content-start mt-6 h-32 overflow-y-auto">
@@ -43,23 +43,21 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
           </div>
         </div>
       ) : (
-        foundBody.bodyType !== "Star" && (
-          <>
-            <Title title="Orbiting" />
-            <div className="mt-6 h-32">
-              {foundPlanet ? (
-                <NavItem
-                  handleOnClick={handleOnClick}
-                  name={foundPlanet && foundPlanet.englishName}
-                />
-              ) : (
-                <p className="opacity-50">
-                  This {foundBody.bodyType} does not orbit anything.
-                </p>
-              )}
-            </div>
-          </>
-        )
+        <>
+          <Title title="Orbiting" />
+          <div className="mt-6 h-32">
+            {foundPlanet ? (
+              <NavItem
+                handleOnClick={handleOnClick}
+                name={foundPlanet && foundPlanet.englishName}
+              />
+            ) : (
+              <p className="opacity-50">
+                This {foundBody.bodyType} does not orbit anything.
+              </p>
+            )}
+          </div>
+        </>
       )}
     </>
   );
