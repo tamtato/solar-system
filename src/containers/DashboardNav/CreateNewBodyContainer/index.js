@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import Button from "../../../components/Button";
 import { addNewBody } from "../../../store/ducks/solarSystemDash";
 import NewBodyForm from "./NewBodyForm";
+import CancelButton from "../../../components/CancelButton";
 
 const CreateNewBodyContainer = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const CreateNewBodyContainer = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex w-full">
       {showForm && (
         <NewBodyForm
           bodyName={bodyName}
@@ -37,10 +38,10 @@ const CreateNewBodyContainer = () => {
         />
       )}
       {showForm ? (
-        <>
-          <Button name="Cancel" handleOnClick={() => setShowForm(!showForm)} />
+        <div className="flex-1 flex">
+          <CancelButton handleOnClick={() => setShowForm(!showForm)} />
           <Button name="Create" handleOnClick={() => handleAddNewBody()} />
-        </>
+        </div>
       ) : (
         <Button
           name="Add New Body"

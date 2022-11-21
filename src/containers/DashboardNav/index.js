@@ -42,7 +42,7 @@ const DashboardNav = () => {
   };
 
   return (
-    <div className="flex flex-col w-80 flex-1 space-y-8 my-12 ml-12 ">
+    <div className="flex flex-col w-80 flex-1 space-y-8">
       <ActionsContainer handleSearchData={handleSearchData} />
       <NavItemsContainer
         navData={navData}
