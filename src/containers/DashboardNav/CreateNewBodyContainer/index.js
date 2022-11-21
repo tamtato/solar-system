@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../../components/Button";
-import Input from "../../../components/Input";
 import { addNewBody } from "../../../store/ducks/solarSystemDash";
+import NewBodyForm from "./NewBodyForm";
 
 const CreateNewBodyContainer = () => {
   const dispatch = useDispatch();
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [bodyName, setBodyName] = useState("");
   const [bodyType, setBodyType] = useState(null);
 
@@ -21,41 +21,30 @@ const CreateNewBodyContainer = () => {
           "customBodies",
           JSON.stringify([{ englishName: bodyName, bodyType }])
         );
-      setShowDropdown(false);
+      setShowForm(false);
       dispatch(addNewBody({ englishName: bodyName, bodyType }));
     }
   };
 
   return (
     <div className="relative">
-      {showDropdown && (
-        <div className="absolute top-0 left-0 -mt-20 z-10 bg-white">
-          <div>Create New Body</div>
-          <Input
-            name="name"
-            placeholder="Body Name"
-            value={bodyName}
-            handleOnChange={setBodyName}
-          />
-          <div className="flex">
-            <div onClick={() => setBodyType("Planet")}>Planet</div>
-            <div onClick={() => setBodyType("Moon")}>Moon</div>
-            <div onClick={() => setBodyType("Star")}>Star</div>
-          </div>
-        </div>
+      {showForm && (
+        <NewBodyForm
+          bodyName={bodyName}
+          setBodyName={setBodyName}
+          bodyType={bodyType}
+          setBodyType={setBodyType}
+        />
       )}
-      {showDropdown ? (
+      {showForm ? (
         <>
-          <Button
-            name="Cancel"
-            handleOnClick={() => setShowDropdown(!showDropdown)}
-          />
+          <Button name="Cancel" handleOnClick={() => setShowForm(!showForm)} />
           <Button name="Create" handleOnClick={() => handleAddNewBody()} />
         </>
       ) : (
         <Button
           name="Add New Body"
-          handleOnClick={() => setShowDropdown(!showDropdown)}
+          handleOnClick={() => setShowForm(!showForm)}
         />
       )}
     </div>
