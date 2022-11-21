@@ -7,6 +7,7 @@ import {
   filterSolarSystemData,
   sortSolarSystemData
 } from "../../../store/ducks/solarSystemDash";
+import Title from "../../../components/Title";
 
 const ActionsContainer = ({ handleSearchData }) => {
   const dispatch = useDispatch();
@@ -31,24 +32,27 @@ const ActionsContainer = ({ handleSearchData }) => {
   };
 
   return (
-    <div className="flex">
-      <SearchInput
-        name="search"
-        handleOnChange={handleSearchData}
-        placeholder="Search Bodies"
-      />
-      <SmallButton
-        icon="swap_vert"
-        handleOnClick={handleSortData}
-        active={sortDirection}
-      />
-      <SmallButtonDropdown
-        icon="filter_list"
-        handleOnClick={handleFilterData}
-        options={["planet", "moon", "star"]}
-        selectedOption={selectedFilter}
-      />
-    </div>
+    <>
+      <Title title="Solar System" />
+      <div className="flex">
+        <SearchInput
+          name="search"
+          handleOnChange={handleSearchData}
+          placeholder="Search Bodies"
+        />
+        <SmallButton
+          icon="swap_vert"
+          handleOnClick={handleSortData}
+          active={sortDirection}
+        />
+        <SmallButtonDropdown
+          icon="filter_list"
+          handleOnClick={handleFilterData}
+          options={["planet", "moon", "star"]}
+          selectedOption={selectedFilter}
+        />
+      </div>
+    </>
   );
 };
 
