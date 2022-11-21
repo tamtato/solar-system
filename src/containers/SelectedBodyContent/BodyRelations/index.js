@@ -29,7 +29,7 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
                   body => body.name === moon.moon
                 );
                 return (
-                  <div className="pr-4">
+                  <div key={"bodyRelations-" + foundMoon.name} className="pr-4">
                     <NavItem
                       handleOnClick={handleOnClick}
                       name={foundMoon.englishName}

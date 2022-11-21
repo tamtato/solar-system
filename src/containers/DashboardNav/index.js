@@ -32,9 +32,7 @@ const DashboardNav = () => {
   const handleSearchData = value => {
     if (queriedSolarSystemData && queriedSolarSystemData.bodies) {
       const queriedData = [...queriedSolarSystemData.bodies].filter(item => {
-        if (item.englishName.toLowerCase().includes(value.toLowerCase())) {
-          return item;
-        }
+        return !!item.englishName.toLowerCase().includes(value.toLowerCase());
       });
       setSearchValue(value);
       setNavData(queriedData);

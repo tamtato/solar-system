@@ -21,6 +21,7 @@ const NewBodyForm = ({ setBodyName, setBodyType, bodyName, bodyType }) => {
       <div className="flex">
         {bodyTypeList.map(body => (
           <Pill
+            key={"typeList-" + body}
             active={bodyType === body}
             name={body}
             handleOnClick={() => setBodyType(body)}

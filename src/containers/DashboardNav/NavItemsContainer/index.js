@@ -35,7 +35,7 @@ const NavItemsContainer = ({ navData, allData }) => {
           navData.map(item => {
             return (
               <NavItem
-                key={item.englishName}
+                key={"navItem-" + item.englishName}
                 name={item.englishName}
                 subText={buildSubText(item)}
                 handleOnClick={handleOnClick}

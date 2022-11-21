@@ -36,7 +36,7 @@ const SmallButtonDropdown = ({
           <ul className="capitalize divide-y divide-zinc-500">
             {options.map(option => (
               <li
-                key={option}
+                key={"smallBtnList-" + option}
                 className={`py-2 px-4 hover:text-yellow-500 ${
                   selectedOption === option ? "text-yellow-500" : ""
                 }`}

@@ -8,7 +8,11 @@ const BodyInfo = ({ title, infoCards }) => {
       <Title title={title} />
       <div className="flex flex-col space-y-6 lg:flex-row lg:space-x-6 lg:space-y-0 mt-6 mb-12">
         {infoCards.map(card => (
-          <InfoCard title={card.title} value={card.value} />
+          <InfoCard
+            key={"bodyInfo-" + card.title}
+            title={card.title}
+            value={card.value}
+          />
         ))}
       </div>
     </>
