@@ -28,6 +28,9 @@ export const getAllSolarSystemData = () => {
       .then(data => {
         dispatch(setAllSolarSystemData(data));
         dispatch(setQueriedSolarSystemData(concatCustomBodies(data)));
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 };
@@ -43,6 +46,9 @@ export const filterSolarSystemData = filter => {
         dispatch(
           setQueriedSolarSystemData(filter ? data : concatCustomBodies(data))
         );
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 };
@@ -58,6 +64,9 @@ export const sortSolarSystemData = direction => {
         dispatch(
           setQueriedSolarSystemData(direction ? data : concatCustomBodies(data))
         );
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 };
