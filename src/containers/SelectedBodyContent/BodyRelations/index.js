@@ -22,7 +22,7 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
       {foundBody.bodyType === "Planet" ? (
         <>
           <Title title="Moons" />
-          <div className="flex flex-wrap content-start mt-6 h-32 overflow-y-auto">
+          <div className="flex flex-wrap content-start mt-6 h-48 overflow-y-auto">
             {foundBody.moons ? (
               foundBody.moons.map(moon => {
                 const foundMoon = allSolarSystemData.bodies.find(
@@ -45,7 +45,7 @@ const BodyRelations = ({ foundBody, allSolarSystemData }) => {
       ) : (
         <>
           <Title title="Orbiting" />
-          <div className="mt-6 h-32">
+          <div className="mt-6 h-48">
             {foundPlanet ? (
               <NavItem
                 handleOnClick={handleOnClick}

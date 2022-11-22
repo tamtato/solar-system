@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavItem from "../../../components/NavItem";
 import { setSelectedBody } from "../../../store/ducks/solarSystemDash";
 
-const NavItemsContainer = ({ navData, allData }) => {
+const NavItems = ({ navData, allData }) => {
   const dispatch = useDispatch();
   const selectedBody = useSelector(state => state.solarSystemDash.selectedBody);
 
@@ -29,7 +29,7 @@ const NavItemsContainer = ({ navData, allData }) => {
   };
 
   return (
-    <div className="lg:flex-1 h-80 relative">
+    <div className="lg:flex-1 min-h-80 h-80 relative">
       <div className="w-full h-full absolute left-0 top-0 overflow-y-auto space-y-4">
         {navData &&
           navData.map(item => {
@@ -48,4 +48,4 @@ const NavItemsContainer = ({ navData, allData }) => {
   );
 };
 
-export default NavItemsContainer;
+export default NavItems;

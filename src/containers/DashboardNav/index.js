@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSolarSystemData } from "../../store/ducks/solarSystemDash";
-import ActionsContainer from "./ActionsContainer";
-import NavItemsContainer from "./NavItemsContainer";
-import CreateNewBodyContainer from "./CreateNewBodyContainer";
+import ActionsBar from "./ActionsBar";
+import NavItems from "./NavItems";
+import CreateNewBody from "./CreateNewBody";
 
 const DashboardNav = () => {
   const dispatch = useDispatch();
@@ -41,12 +41,9 @@ const DashboardNav = () => {
 
   return (
     <div className="flex flex-col lg:w-80 flex-1 space-y-8">
-      <ActionsContainer handleSearchData={handleSearchData} />
-      <NavItemsContainer
-        navData={navData}
-        allData={allSolarSystemData.bodies}
-      />
-      <CreateNewBodyContainer />
+      <ActionsBar handleSearchData={handleSearchData} />
+      <NavItems navData={navData} allData={allSolarSystemData.bodies} />
+      <CreateNewBody />
     </div>
   );
 };

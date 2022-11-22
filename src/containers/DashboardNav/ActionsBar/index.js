@@ -9,7 +9,7 @@ import {
 } from "../../../store/ducks/solarSystemDash";
 import Title from "../../../components/Title";
 
-const ActionsContainer = ({ handleSearchData }) => {
+const ActionsBar = ({ handleSearchData }) => {
   const dispatch = useDispatch();
   const [sortDirection, setSortDirection] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState(null);
@@ -57,4 +57,4 @@ const ActionsContainer = ({ handleSearchData }) => {
   );
 };
 
-export default ActionsContainer;
+export default ActionsBar;

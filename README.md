@@ -6,7 +6,7 @@ When initially cloning and running npm install, I received an error for react-re
 
 ## Responsive Design
 
-With more time I would have implemented better responsive design - Where it lacks is with screens 820(iPads) the layout is the same as a mobile so the content is a little stretched.
+With more time I would have implemented better responsive design - Where it lacks is with screens 820(iPads) the layout is the same as a mobile so the content is a little stretched. I would also have liked to implemeneted better landscape responsiveness for mobile.
 
 ## Sorting Data
 

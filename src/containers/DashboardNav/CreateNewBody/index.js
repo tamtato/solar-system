@@ -6,7 +6,7 @@ import NewBodyForm from "./NewBodyForm";
 import CancelButton from "../../../components/CancelButton";
 import { useOutsideClickClose } from "../../../hooks/useOutsideClickClose";
 
-const CreateNewBodyContainer = () => {
+const CreateNewBody = () => {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [bodyName, setBodyName] = useState("");
@@ -60,4 +60,4 @@ const CreateNewBodyContainer = () => {
   );
 };
 
-export default CreateNewBodyContainer;
+export default CreateNewBody;
